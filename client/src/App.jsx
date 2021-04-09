@@ -1,13 +1,48 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 // style
 import "./App.scss";
 
 const App = () => {
   return (
-    <div>
-      <p>hello</p>
-    </div>
+    <Container className="p-4">
+      <Row>
+        <Col>
+          <h1 className="display">Display</h1>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+
+          <p className="mt-4">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. A adipisci
+            dolores molestiae aut eveniet, ad recusandae. Illo cum iure
+            dignissimos eius suscipit voluptas incidunt cumque laborum repellat,
+            labore totam ex.
+          </p>
+        </Col>
+
+        <Col>
+          <h1 className="display uppercase">Display</h1>
+          <h1 className="uppercase">Heading 1</h1>
+          <h2 className="uppercase">Heading 2</h2>
+          <h3 className="uppercase">Heading 3</h3>
+          <h4 className="uppercase">Heading 4</h4>
+          <h5 className="uppercase">Heading 5</h5>
+          <h6 className="uppercase">Heading 6</h6>
+
+          <p className="mt-4 uppercase">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. A adipisci
+            dolores molestiae aut eveniet, ad recusandae. Illo cum iure
+            dignissimos eius suscipit voluptas incidunt cumque laborum repellat,
+            labore totam ex.
+          </p>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,0 +1,86 @@
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import "scss/variables";
+
+* {
+  font-family: $primary-font;
+  font-size: 1.6rem;
+  font-weight: $regular;
+  line-height: 2.4rem;
+}
+
+html {
+  font-size: 10px;
+}
+
+// Typography
+
+.display {
+  font-size: 6rem;
+  font-weight: $extraBold;
+  line-height: 6.4rem;
+  letter-spacing: -0.12rem;
+
+}
+
+.bold {
+    font-weight: $semiBold;
+}
+
+.small {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+}
+
+.caption {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+.uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+}
+
+h1 {
+  font-size: 4.8rem;
+  font-weight: $extraBold;
+  line-height: 5.6rem;
+  letter-spacing: -0.096rem;
+}
+
+h2 {
+  font-size: 3.4rem;
+  font-weight: $bold;
+  line-height: 4rem;
+  letter-spacing: -0.068rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+  font-weight: $bold;
+  line-height: 3.2rem;
+  letter-spacing: -0.048rem;
+}
+
+h4 {
+  font-size: 2rem;
+  font-weight: $bold;
+  line-height: 2.8rem;
+  letter-spacing: -0.04rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+  font-weight: $bold;
+  line-height: 2.4rem;
+  letter-spacing: -0.036rem;
+}
+
+h6 {
+  font-size: 1.8rem;
+  font-weight: $bold;
+  line-height: 2rem;
+  letter-spacing: -0.036rem;
+}
+
