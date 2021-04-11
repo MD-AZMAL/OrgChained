@@ -2,16 +2,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 @import "scss/variables";
 
-* {
-  font-family: $primary-font;
-  font-size: 1.6rem;
-  font-weight: $regular;
-  line-height: 2.4rem;
-}
+// * {
+//   font-family: $primary-font;
+//   font-size: 1.6rem;
+//   font-weight: $regular;
+//   line-height: 2.4rem;
+// }
 
-html {
-  font-size: 10px;
-}
+// html {
+//   font-size: 10px;
+// }
 
 // Typography
 
@@ -20,7 +20,6 @@ html {
   font-weight: $extraBold;
   line-height: 6.4rem;
   letter-spacing: -0.12rem;
-
 }
 
 .bold {
@@ -42,45 +41,64 @@ html {
     letter-spacing: 0.02rem;
 }
 
-h1 {
-  font-size: 4.8rem;
-  font-weight: $extraBold;
-  line-height: 5.6rem;
-  letter-spacing: -0.096rem;
-}
+// h1 {
+//   font-size: 4.8rem;
+//   font-weight: $extraBold;
+//   line-height: 5.6rem;
+//   letter-spacing: -0.096rem;
+// }
 
-h2 {
+h1 {
   font-size: 3.4rem;
   font-weight: $bold;
   line-height: 4rem;
   letter-spacing: -0.068rem;
 }
 
-h3 {
+h2 {
   font-size: 2.4rem;
   font-weight: $bold;
   line-height: 3.2rem;
   letter-spacing: -0.048rem;
 }
 
-h4 {
+h3 {
   font-size: 2rem;
   font-weight: $bold;
   line-height: 2.8rem;
   letter-spacing: -0.04rem;
 }
 
-h5 {
+h4 {
   font-size: 1.8rem;
   font-weight: $bold;
   line-height: 2.4rem;
   letter-spacing: -0.036rem;
 }
 
-h6 {
-  font-size: 1.8rem;
+h5 {
+  font-size: 1.6rem;
   font-weight: $bold;
   line-height: 2rem;
-  letter-spacing: -0.036rem;
+  letter-spacing: -0.026rem;
 }
 
+h6 {
+  font-size: 1.6rem;
+  font-weight: $bold;
+  line-height: 2rem;
+  letter-spacing: -0.026rem;
+}
+
+// Buttons
+@each $color, $value in $custom-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $custom-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}

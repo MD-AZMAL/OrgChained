@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 // style
 import "./App.scss";
@@ -42,6 +42,70 @@ const App = () => {
           </p>
         </Col>
       </Row>
+      <div className="mt-4">
+        <Row>
+          <Col md="6" className="mb-4">
+            <Button variant="color-major" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-minor" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-accent" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-gray" size="lg" className="mr-2">
+              Button
+            </Button>
+          </Col>
+          <Col md="7">
+            <Button variant="outline-color-major" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-minor" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-accent" size="lg" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-gray" size="lg" className="mr-2">
+              Button
+            </Button>
+          </Col>
+        </Row>
+      </div>
+      <div className="mt-4">
+        <Row>
+          <Col md="6" className="mb-4">
+            <Button variant="color-major" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-minor" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-accent" className="mr-2">
+              Button
+            </Button>
+            <Button variant="color-gray" className="mr-2">
+              Button
+            </Button>
+          </Col>
+          <Col md="7">
+            <Button variant="outline-color-major" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-minor" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-accent" className="mr-2">
+              Button
+            </Button>
+            <Button variant="outline-color-gray" className="mr-2">
+              Button
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </Container>
   );
 };

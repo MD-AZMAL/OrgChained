@@ -1,8 +1,25 @@
 // Fonts
-$primary-font: 'Inter', sans-serif;
+$primary-font: "Inter", sans-serif;
 
 $regular: 400;
 $semiBold: 600;
 $bold: 700;
 $extraBold: 800;
+
+// Colors
+$color-major: #1d3557;
+$color-minor: #457b9d;
+$color-accent: #e63946;
+$color-gray: #f1faee;
+
+$custom-colors: () !default;
+$custom-colors: map-merge(
+  (
+    "color-major": $color-major,
+    "color-minor": $color-minor,
+    "color-accent": $color-accent,
+    "color-gray": $color-gray,
+  ),
+  $custom-colors
+);
 
