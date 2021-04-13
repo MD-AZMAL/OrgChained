@@ -6,8 +6,8 @@ const userSchema = mongoose.Schema({
   email: { type: String, required: true },
   idNo: { type: String, required: true },
   hashedPassword: { type: String, required: true },
-  salt: { type: String, required: true },
   pubK: { type: String, required: true },
+  privK: { type: String, required: true },
 });
 
 // const userSchema = mongoose.Schema({

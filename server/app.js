@@ -1,9 +1,11 @@
-const express = require("express"),
-  mongoose = require("mongoose"),
-  cors = require("cors"),
-  app = express();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
 
-const User = require("./models/User");
+const routes = [require("./router/user")];
+
+// const User = require("./models/User");
 
 const port = process.env.PORT || 3000;
 
@@ -15,31 +17,34 @@ mongoose.connect(`mongodb://localhost:${dbPort}/${dbName}`, {
   useUnifiedTopology: true,
 });
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+routes.map((router) => app.use(router));
 
-  console.log(`Email is ${email}`);
-  
-  let status = 0;
-  let data = {};
-  
-  try {
-    data = await User.create({ email: email, password: password });
-    status = 200;
-  } catch (err) {
-      status = 400;
-      data = err;
-  }
-  res.status(status).send(data);
-});
+// app.post("/", async (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
 
-app.get("/", async (req, res) => {
-  const users = await User.find({});
-  res.status(200).send(users);
-});
+//   console.log(`Email is ${email}`);
+
+//   let status = 0;
+//   let data = {};
+
+//   try {
+//     data = await User.create({ email: email, password: password });
+//     status = 200;
+//   } catch (err) {
+//       status = 400;
+//       data = err;
+//   }
+//   res.status(status).send(data);
+// });
+
+// app.get("/", async (req, res) => {
+//   const users = await User.find({});
+//   res.status(200).send(users);
+// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
