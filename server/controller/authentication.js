@@ -73,7 +73,7 @@ const login = async (clientParameters) => {
   );
 
   if (!existingUser) {
-    throw { errorCode: 4, message: "User does not exists", error: null };
+    throw { errorCode: 4, message: "Invalid Email", error: null };
   } else if (errorExistingUser) {
     throw {
       errorCode: 1,

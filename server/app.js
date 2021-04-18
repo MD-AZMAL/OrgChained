@@ -7,7 +7,7 @@ const routes = [require("./router/user")];
 
 // const User = require("./models/User");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 const dbPort = 27018;
 const dbName = "OrgChained";
@@ -18,6 +18,7 @@ mongoose.connect(`mongodb://localhost:${dbPort}/${dbName}`, {
 });
 
 app.use(cors());
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 routes.map((router) => app.use(router));
