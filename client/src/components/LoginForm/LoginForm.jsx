@@ -11,7 +11,7 @@ const LoginForm = () => {
     handleError,
     clearValue,
     clearError,
-  ] = useForm();
+  ] = useForm({ role: "User" });
 
   const onSubmit = async (e) => {
     e.preventDefault();

@@ -19,7 +19,7 @@ const RegisterPage = () => {
 
         <Container>
           <Row className="justify-content-center">
-            <Col md="7">
+            <Col lg="7">
               <RegisterForm />
             </Col>
           </Row>

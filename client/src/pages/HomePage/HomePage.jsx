@@ -17,7 +17,7 @@ const HomePage = () => {
         </div>
         <Container>
           <Row className="justify-content-center">
-            <Col md="7">
+            <Col lg="7" >
               <LoginForm />
             </Col>
           </Row>
