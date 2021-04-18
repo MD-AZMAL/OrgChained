@@ -5,6 +5,7 @@ import DSMPage from "./pages/DSMPage/DSMPage";
 // style
 import "./App.scss";
 import HomePage from "./pages/HomePage/HomePage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 const App = () => {
   return (
@@ -12,6 +13,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/dsm" component={DSMPage} />
+        <Route exact path="/register" component={RegisterPage} />
+
       </Switch>
     </div>
   );
