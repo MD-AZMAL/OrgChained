@@ -1,107 +1,109 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
-import { loginApi } from "../../api/LoginApi";
-import useInput from "../../hooks/useInput";
+import { loginApi } from "../../api/apicall";
+import useForm from "../../hooks/useForm";
 
 const LoginForm = () => {
-  const [formError, setFormError] = useState("");
-
-  const [email, bindEmail, resetEmail, emailError, setEmailError] = useInput(
-    ""
-  );
   const [
-    password,
-    bindPassword,
-    resetPassword,
-    passwordError,
-    setPasswordError,
-  ] = useInput("");
-  const [role, bindRole, resetRole, roleError, setRoleError] = useInput("User");
+    value,
+    handleChange,
+    formError,
+    handleError,
+    clearValue,
+    clearError,
+  ] = useForm();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const [error, result] = await loginApi(email, role, password);
+    const { email, role, password } = value;
+
+    const [error, result] = await loginApi({email, role, password});
 
     if (error) {
-      const errorData = error.response.data.content;
+      const errorData = error?.response?.data?.content;
 
-      setEmailError("");
-      setRoleError("");
-      setPasswordError("");
+      clearError();
 
-      switch (errorData.errorCode) {
+      switch (errorData?.errorCode) {
         case 0:
-          setFormError(`Missing : ${errorData.message.join(", ")}`);
+          handleError("form", `Missing : ${errorData.message.join(", ")}`);
           break;
         case 1:
         case 2:
-          setFormError(errorData.message);
+          handleError("form", errorData.message);
           break;
         case 4:
-          setEmailError(errorData.message);
+          handleError("email", errorData.message);
           break;
         case 5:
-          setRoleError(errorData.message);
+          handleError("role", errorData.message);
           break;
         case 6:
-          setPasswordError(errorData.message);
+          handleError("password", errorData.message);
           break;
         default:
-          setFormError("Error while submitting");
+          handleError("form", "Error while submitting");
           break;
       }
     } else {
       console.log(result);
 
-      setEmailError("");
-      setRoleError("");
-      setPasswordError("");
-      
-      resetEmail();
-      resetPassword();
-      resetRole();
+      clearError();
+      clearValue();
     }
   };
 
   return (
     <Form onSubmit={onSubmit} className="p-4 border shadow bg-white">
       <Form.Group>
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control
           type="email"
+          name="email"
           placeholder="Enter email"
-          {...bindEmail}
+          value={value.email || ""}
+          onChange={handleChange}
           required
         />
-        <Form.Text className="text-color-accent">{emailError}</Form.Text>
+        <Form.Text className="text-color-accent">{formError.email}</Form.Text>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Role</Form.Label>
-        <Form.Control as="select" {...bindRole} required>
+        <Form.Control
+          as="select"
+          name="role"
+          value={value.role || "User"}
+          onChange={handleChange}
+          required
+        >
           <option>User</option>
           <option>Admin</option>
         </Form.Control>
-        <Form.Text className="text-color-accent">{roleError}</Form.Text>
+        <Form.Text className="text-color-accent">{formError.role}</Form.Text>
       </Form.Group>
       <Form.Group>
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           placeholder="Password"
-          {...bindPassword}
+          name="password"
+          value={value.password || ""}
+          onChange={handleChange}
           required
         />
-        <Form.Text className="text-color-accent">{passwordError}</Form.Text>
+        <Form.Text className="text-color-accent">
+          {formError.password}
+        </Form.Text>
       </Form.Group>
 
       <Form.Group className="text-center">
-        <Form.Text className="text-color-accent">{formError}</Form.Text>
+        <Form.Text className="text-color-accent">{formError.form}</Form.Text>
       </Form.Group>
 
       <div className="text-center">
-        <Button variant="color-major" type="submit">
+        <Button variant="color-major" type="submit" block>
           Submit
         </Button>
       </div>
