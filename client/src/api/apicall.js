@@ -2,13 +2,11 @@ import axios from "axios";
 import endpoints from "./routes";
 
 export const loginApi = async ({ email, role, password }) => {
-  const login = endpoints.login;
   let data;
   let error;
 
   const requrestObject = {
-    method: login.method,
-    url: login.url,
+   ...endpoints.login,
     data: {
       email,
       password,
@@ -37,13 +35,11 @@ export const signupApi = async ({
   idNo,
   password,
 }) => {
-  const signup = endpoints.signup;
   let data;
   let error;
 
   const requrestObject = {
-    method: signup.method,
-    url: signup.url,
+   ...endpoints.signup,
     data: {
       firstName,
       lastName,

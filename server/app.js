@@ -1,6 +1,11 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
+const authenticateToken = require('./middleware/authenticateToken');
+// const session = require("express-session");
+// const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
 const routes = [require("./router/user")];
@@ -17,9 +22,26 @@ mongoose.connect(`mongodb://localhost:${dbPort}/${dbName}`, {
   useUnifiedTopology: true,
 });
 
-app.use(cors());
-app.use(express.json())
+// const sessionStore = new MongoDBStore({
+//   uri: `mongodb://localhost:${dbPort}/${dbName}`,
+//   collection: "sessions",
+// });
+
+app.use(cors({ credentials: true }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// app.use(
+//   session({
+//     secret: "abcxyz",
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: {
+//       maxAge: 60 * 60 * 1000,
+//     },
+//     store: sessionStore,
+//   })
+// );
 
 routes.map((router) => app.use(router));
 
@@ -46,6 +68,8 @@ routes.map((router) => app.use(router));
 //   const users = await User.find({});
 //   res.status(200).send(users);
 // });
+
+app.post('/test', authenticateToken, (req,res) => res.send('hello'))
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

@@ -30,7 +30,6 @@ router.post(routeNames.signup, checkClientParams, async (req, res) => {
       content: error,
     };
   }
-
   res.status(statusCode).send(responseObject);
 });
 
@@ -58,6 +57,7 @@ router.post(routeNames.login, checkClientParams, async (req, res) => {
       content: error,
     };
   }
+  console.log(req.session);
 
   res.status(statusCode).send(responseObject);
 });

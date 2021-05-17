@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const NodeRSA = require("node-rsa");
 const User = require("../models/User");
+const jwt = require('jsonwebtoken');
 const promiseHandler = require("../utils/promiseHandler");
 
 const signup = async (clientParameters) => {
@@ -107,10 +108,11 @@ const login = async (clientParameters) => {
     };
   }
 
+  const accessToken = jwt.sign({email: existingUser.email, role: existingUser.role},process.env.JWT_SECRET);
+
   return {
     login: hashedPasswordResult,
-    email: existingUser.email,
-    role: existingUser.role,
+    token: accessToken
   };
 };
 
