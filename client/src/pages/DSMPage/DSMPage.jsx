@@ -1,9 +1,14 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { setCurrentUserNull } from "../../redux/user/user.actions";
 
-const DSMPage = () => {
+const DSMPage = ({ setCurrentUserNull }) => {
   return (
     <Container className="p-4">
+      <Button variant="color-accent" onClick={setCurrentUserNull}>
+        setUserNull
+      </Button>
       <Row>
         <Col>
           <h1 className="display">Display</h1>
@@ -107,4 +112,8 @@ const DSMPage = () => {
   );
 };
 
-export default DSMPage;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUserNull: () => dispatch(setCurrentUserNull()),
+});
+
+export default connect(null, mapDispatchToProps)(DSMPage);

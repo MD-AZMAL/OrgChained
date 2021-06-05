@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { useHistory } from "react-router";
+import { createStructuredSelector } from "reselect";
 import { loginApi } from "../../api/apicall";
 import useForm from "../../hooks/useForm";
+import { setCurrentUser } from "../../redux/user/user.actions";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-const LoginForm = () => {
-  const [
-    value,
-    handleChange,
-    formError,
-    handleError,
-    clearValue,
-    clearError,
-  ] = useForm({ role: "User" });
+const LoginForm = ({ currentUser, setCurrentUser }) => {
+  const history = useHistory();
+  const [value, handleChange, formError, handleError, clearValue, clearError] =
+    useForm({ role: "User" });
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const { email, role, password } = value;
 
-    const [error, result] = await loginApi({email, role, password});
+    const [error, result] = await loginApi({ email, role, password });
 
     if (error) {
       const errorData = error?.response?.data?.content;
@@ -47,12 +47,15 @@ const LoginForm = () => {
           break;
       }
     } else {
-      console.log(result);
-
       clearError();
       clearValue();
+      setCurrentUser(result.content.user);
     }
   };
+
+  useEffect(() => {
+    if (currentUser) history.push("/dsm");
+  }, [currentUser,history]);
 
   return (
     <Form onSubmit={onSubmit} className="p-4 border shadow bg-white">
@@ -111,4 +114,12 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

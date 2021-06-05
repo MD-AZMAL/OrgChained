@@ -1,9 +1,11 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { signupApi } from "../../api/apicall";
 import useForm from "../../hooks/useForm";
 
 const RegisterForm = () => {
+  const history = useHistory();
   const [
     value,
     handleChange,
@@ -50,10 +52,11 @@ const RegisterForm = () => {
             break;
         }
       } else {
-        console.log(result);
-
+        
         clearError();
         clearValue();
+        console.log(result);
+        history.push('/');
       }
     }
   };

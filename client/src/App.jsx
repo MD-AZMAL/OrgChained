@@ -1,23 +1,30 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import DSMPage from "./pages/DSMPage/DSMPage";
+import HomePage from "./pages/HomePage/HomePage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 
 // style
 import "./App.scss";
-import HomePage from "./pages/HomePage/HomePage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
-const App = () => {
+const App = ({currentUser}) => {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" render={() => currentUser ? <Redirect to='/dsm'/> : <HomePage /> }/>
         <Route exact path="/dsm" component={DSMPage} />
-        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/register" render={() => currentUser ? <Redirect to='/dsm'/> : <RegisterPage /> }/>
 
       </Switch>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+})
+
+export default connect(mapStateToProps)(App);
