@@ -14,10 +14,17 @@ const checkClientParams = (req, res, next) => {
       if (!req.body.password) missing.push("password");
       break;
     case routeNames.login:
-      if(!req.body.email) missing.push("email");
-      if(!req.body.password) missing.push("password");
-      if(!req.body.role) missing.push("role");
-
+      if (!req.body.email) missing.push("email");
+      if (!req.body.password) missing.push("password");
+      if (!req.body.role) missing.push("role");
+      break;
+    case routeNames.addArea:
+      if (!req.body.name) missing.push("name");
+      if (!req.body.areaCode) missing.push("areaCode");
+      break;
+    case routeNames.addAreaAdmin:
+      if(!req.body.idNo) missing.push("idNo");
+      break;
     default:
       break;
   }
@@ -31,7 +38,7 @@ const checkClientParams = (req, res, next) => {
     route: req.route.path,
     info: null,
     error: "missing client parameters",
-    content: {errorCode: 0 ,message: missing, error: null },
+    content: { errorCode: 0, message: missing, error: null },
   };
 
   res.status(400).send(responseObject);

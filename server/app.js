@@ -8,7 +8,7 @@ const authenticateToken = require('./middleware/authenticateToken');
 // const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-const routes = [require("./router/user")];
+const routes = [require("./router/user"),require('./router/area')];
 
 // const User = require("./models/User");
 
@@ -69,7 +69,7 @@ routes.map((router) => app.use(router));
 //   res.status(200).send(users);
 // });
 
-app.post('/test', authenticateToken, (req,res) => res.send('hello'))
+app.post('/test', authenticateToken, (req,res) => res.send(req.user))
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

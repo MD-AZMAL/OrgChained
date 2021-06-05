@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const NodeRSA = require("node-rsa");
 const User = require("../models/User");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const promiseHandler = require("../utils/promiseHandler");
 
 const signup = async (clientParameters) => {
@@ -17,7 +17,7 @@ const signup = async (clientParameters) => {
     throw {
       errorCode: 1,
       message: "Database Error: Unable to query user",
-      error: existingUser,
+      error: errorExistingUser,
     };
   }
 
@@ -79,7 +79,7 @@ const login = async (clientParameters) => {
     throw {
       errorCode: 1,
       message: "Database Error: Unable to query user",
-      error: existingUser,
+      error: errorExistingUser,
     };
   } else if (existingUser.role !== clientParameters.role) {
     throw { errorCode: 5, message: "Invalid User role", error: null };
@@ -87,12 +87,10 @@ const login = async (clientParameters) => {
 
   // Check if password matches
 
-  const [
-    hashedPasswordResult,
-    errorHashedPasswordResult,
-  ] = await promiseHandler(
-    bcrypt.compare(clientParameters.password, existingUser.hashedPassword)
-  );
+  const [hashedPasswordResult, errorHashedPasswordResult] =
+    await promiseHandler(
+      bcrypt.compare(clientParameters.password, existingUser.hashedPassword)
+    );
 
   if (errorHashedPasswordResult) {
     throw {
@@ -108,12 +106,21 @@ const login = async (clientParameters) => {
     };
   }
 
-  const accessToken = jwt.sign({email: existingUser.email, role: existingUser.role},process.env.JWT_SECRET);
+  const accessToken = jwt.sign(
+    { email: existingUser.email, role: existingUser.role, _id: existingUser._id },
+    process.env.JWT_SECRET
+  );
 
   return {
     login: hashedPasswordResult,
-    token: accessToken
+    user: {
+      id: existingUser.id,
+      token: accessToken,
+      email: existingUser.email,
+      name: `${existingUser.firstName} ${existingUser.lastName}`,
+      role: existingUser.role,
+    },
   };
 };
 
-module.exports = { signup: signup, login: login };
+module.exports = { signup, login };
