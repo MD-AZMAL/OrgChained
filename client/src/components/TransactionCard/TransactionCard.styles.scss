@@ -1,0 +1,39 @@
+@import "../../scss/variables";
+
+.transaction-card {
+  border-radius: 0.5rem;
+  border: 2px dashed rgba($color: $color-minor, $alpha: 0.5);
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+
+  &--container {
+    display: flex;
+    width: 100%;
+  }
+
+  &--left {
+    width: 100%;
+  }
+
+  &--right {
+    border-left: 2px dashed rgba($color: $color-minor, $alpha: 0.5);
+    padding-left: 1rem;
+    width: 100%;
+  }
+
+  &--user {
+    width: 100%;
+
+    &-name {
+      font-size: 1.3rem;
+      font-weight: $semiBold;
+      margin-right: auto;
+      color: $color-major;
+    }
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+}

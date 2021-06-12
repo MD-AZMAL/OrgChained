@@ -1,0 +1,25 @@
+@import "../../scss/variables";
+
+
+#dashboard-sidebar {
+    background-color: $color-major;
+    color:$color-gray;
+    padding: 0;
+    width: 20%;
+    height: 100vh; 
+    min-height: 200px;
+    overflow: auto;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    & .btn {
+        border-radius: 0;
+    }
+}
+
+.sidebar-admin {
+    border-top: 1px solid rgba($color: $color-minor, $alpha: 0.5);
+    border-bottom: 1px solid rgba($color: $color-minor, $alpha: 0.5);
+
+}

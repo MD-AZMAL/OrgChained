@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+// import React from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
 import { createStructuredSelector } from "reselect";
 import { loginApi } from "../../api/apicall";
 import useForm from "../../hooks/useForm";
@@ -9,7 +9,6 @@ import { setCurrentUser } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const LoginForm = ({ currentUser, setCurrentUser }) => {
-  const history = useHistory();
   const [value, handleChange, formError, handleError, clearValue, clearError] =
     useForm({ role: "User" });
 
@@ -53,9 +52,7 @@ const LoginForm = ({ currentUser, setCurrentUser }) => {
     }
   };
 
-  useEffect(() => {
-    if (currentUser) history.push("/dsm");
-  }, [currentUser,history]);
+
 
   return (
     <Form onSubmit={onSubmit} className="p-4 border shadow bg-white">

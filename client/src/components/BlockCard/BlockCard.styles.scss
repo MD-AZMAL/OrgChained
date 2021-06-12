@@ -1,0 +1,27 @@
+@import "../../scss/variables";
+
+.block-card {
+  border-radius: 0.5rem;
+  border: 2px dashed rgba($color: $color-major, $alpha: 0.5);
+  background-color: rgba($color: $color-major, $alpha: 0.1);
+  margin-bottom: 0;
+
+  &--genesis {
+    border: 2px dashed rgba($color: $color-major, $alpha: 0.5);
+    padding: 1rem;
+    text-align: center;
+    color: $color-major;
+  }
+
+  &--hash {
+    &-prev {
+      background-color: rgba($color: $color-accent, $alpha: 0.8);
+      color: $color-gray;
+    }
+
+    &-curr {
+      background-color: rgba($color: $color-success, $alpha: 0.8);
+      color: $color-gray;
+    }
+  }
+}

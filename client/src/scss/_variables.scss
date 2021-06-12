@@ -10,7 +10,12 @@ $extraBold: 800;
 $color-major: #1d3557;
 $color-minor: #457b9d;
 $color-accent: #e63946;
+$color-success: #10ad37;
 $color-gray: #f1faee;
+
+$color-minor-light: rgba($color: #457b9d, $alpha: 0.1);
+$color-accent-light:  rgba($color: #e63946, $alpha: 0.2);
+$color-success-light: rgba($color: #10ad37, $alpha: 0.3);
 
 $custom-colors: () !default;
 $custom-colors: map-merge(
@@ -19,7 +24,12 @@ $custom-colors: map-merge(
     "color-minor": $color-minor,
     "color-accent": $color-accent,
     "color-gray": $color-gray,
+    "color-success": $color-success,
+    "color-minor-light": $color-minor-light,
+    "color-accent-light": $color-accent-light,
+    "color-success-light": $color-success-light,
   ),
   $custom-colors
 );
+
 
