@@ -23,7 +23,16 @@ const checkClientParams = (req, res, next) => {
       if (!req.body.areaCode) missing.push("areaCode");
       break;
     case routeNames.addAreaAdmin:
-      if(!req.body.idNo) missing.push("idNo");
+      if (!req.body.idNo) missing.push("idNo");
+      break;
+    case routeNames.requestAccess:
+      if (!req.body.startTime) missing.push("startTime");
+      if (!req.body.endTime) missing.push("endTime");
+      break;
+    case routeNames.endTransaction:
+      if(!req.body._id) missing.push("_id");
+      if(!req.body.pubKey) missing.push("pubKey");
+      if(!req.body.status) missing.push("status");
       break;
     default:
       break;

@@ -81,8 +81,10 @@ router.get(routeNames.getAreas, authenticateToken, async (req, res) => {
   let statusCode;
   let responseObject;
 
+  const clientParameters = { ...req.query };
+
   try {
-    const result = await getAreas(req.user);
+    const result = await getAreas(clientParameters, req.user);
 
     statusCode = 200;
     responseObject = {
@@ -108,7 +110,6 @@ router.get(routeNames.getArea, authenticateToken, async (req, res) => {
   let statusCode;
   let responseObject;
 
-
   try {
     const result = await getArea(req.params.areaCode, req.user);
 
@@ -129,6 +130,7 @@ router.get(routeNames.getArea, authenticateToken, async (req, res) => {
       content: error,
     };
   }
+
   res.status(statusCode).send(responseObject);
 });
 

@@ -57,7 +57,6 @@ router.post(routeNames.login, checkClientParams, async (req, res) => {
       content: error,
     };
   }
-  console.log(req.session);
 
   res.status(statusCode).send(responseObject);
 });

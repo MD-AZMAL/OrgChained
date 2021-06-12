@@ -1,14 +1,20 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const jwt = require('jsonwebtoken');
-const authenticateToken = require('./middleware/authenticateToken');
+const jwt = require("jsonwebtoken");
+const authenticateToken = require("./middleware/authenticateToken");
+const { addGenesisBlock } = require("./controller/blockchainUtils");
 // const session = require("express-session");
 // const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-const routes = [require("./router/user"),require('./router/area')];
+const routes = [
+  require("./router/user"),
+  require("./router/area"),
+  require("./router/transaction"),
+  require("./router/blockchain"),
+];
 
 // const User = require("./models/User");
 
@@ -69,8 +75,10 @@ routes.map((router) => app.use(router));
 //   res.status(200).send(users);
 // });
 
-app.post('/test', authenticateToken, (req,res) => res.send(req.user))
+app.post("/test", authenticateToken, (req, res) => res.send(req.user));
 
 app.listen(port, () => {
+  addGenesisBlock();
+
   console.log(`Listening on port ${port}`);
 });
